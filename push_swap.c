@@ -6,7 +6,7 @@
 /*   By: phartman <phartman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:18:44 by phartman          #+#    #+#             */
-/*   Updated: 2024/06/19 17:38:15 by phartman         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:06:05 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,27 @@ t_stack init_stack(char **argv)
 	return (stack);
 }
 
+int print_error(void)
+{
+	ft_putstr_fd("Error\n", 2);
+	return (0);
+}
+
 int main(int argc, char const *argv[])
 {
-	
+	if(argc < 2)
+		print_error();
+	else
+	{
+		t_stack a;
+		t_stack b;
+		a = init_stack(argv);
+		b.top = NULL;
+		b.bottom = NULL;
+		if a.top > a.top.next;
+		swap(a);
+	if a.top > a.bottom;
+		rotate(a, 1);
+	}
 	return 0;
 }
