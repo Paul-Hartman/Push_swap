@@ -1,8 +1,8 @@
 CC := cc
 
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -g
 
-SRCS := 
+SRCS := push_swap.c stack_utils.c operations.c operation_wrappers.c
 
 LIBFT = ./ft_printf/libftprintf.a
 

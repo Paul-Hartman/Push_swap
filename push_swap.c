@@ -6,120 +6,78 @@
 /*   By: phartman <phartman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:18:44 by phartman          #+#    #+#             */
-/*   Updated: 2024/06/19 18:06:05 by phartman         ###   ########.fr       */
+/*   Updated: 2024/06/20 19:27:30 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int swap(t_stack *stack)
+int	print_error(char *msg)
 {
-	t_list *tmp;
-
-	if (!stack || !stack->top || !stack->top->next)
-		return (0);
-	tmp = stack->top;
-	stack->top = stack->top->next;
-	tmp->next = stack->top->next;
-	stack->top->next = tmp;
-	return (1);
-}
-
-int swap_both(t_stack *a, t_stack *b)
-{
-	return (swap(a) && swap(b));
-}
-
-int push_a(t_stack *a, t_stack *b)
-{
-	t_list *tmp;
-	if(a->top == NULL)
-		return (0);
-	ft_lstadd_front(b->top, a->top);
-	a->top = a->top->next;
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(msg, 2);
+	exit(1);
 	return (0);
 }
 
-int push_b(t_stack *a, t_stack *b)
+t_stack_node	*handle_args(int argc, char const *argv[])
 {
-	if(b->top == NULL)
-		return (0);
-	ft_lstadd_front(a->top, b->top);
-	b->top = b->top->next;
-	return (0);
-}
+	int				i;
+	int				j;
+	t_stack_node	*stack;
+	char			**args;
+	long int		num;
 
-int rotate(t_stack *stack, int reverse)
-{
-	t_list *tmp;
-	if(!stack)
-		return (0);
-	if(!reverse)
+	stack = NULL;
+	i = 1;
+	while (i < argc)
 	{
-		tmp = stack->top;
-		stack->top = stack->top->next;
-		stack->bottom->next = tmp;
-		stack->bottom = tmp;
-	}
-	else
-	{
-		tmp = stack->bottom;
-		stack->bottom = stack->bottom->prev;
-		tmp->next = stack->top;
-		stack->top = tmp;
-	}
-}
-
-int rotate_both(t_stack *a, t_stack *b, int reverse)
-{
-	return (rotate(a, reverse) && rotate(b, reverse));
-}
-
-
-
-t_stack init_stack(char **argv)
-{
-	t_stack stack;
-	t_list *new;
-	int i;
-
-	stack.top = NULL;
-	stack.bottom = NULL;
-	i = 0;
-	while (argv[i])
-	{
-		new = ft_lstnew(ft_atoi(argv[i]));
-		if (!new)
-			return (stack);
-		ft_lstadd_back(&stack.top, new);
-		if (!stack.bottom)
-			stack.bottom = stack.top;
+		j = 0;
+		args = ft_split(argv[i], ' ');
+		while (args[j])
+		{
+			num = ft_atol(args[j]);
+			if (num == 0 && args[j][0] != '0')
+				print_error("invalid argument");
+			if (num > INT_MAX || num < INT_MIN)
+				print_error("argument to large or too small");
+			stack_add(&stack, num);
+			j++;
+		}
 		i++;
 	}
 	return (stack);
 }
 
-int print_error(void)
+void	print_stack(t_stack_node *stack)
 {
-	ft_putstr_fd("Error\n", 2);
-	return (0);
+	t_stack_node	*tmp;
+
+	tmp = stack;
+	while (tmp)
+	{
+		ft_printf("%d\n", tmp->nbr);
+		tmp = tmp->next;
+	}
 }
 
-int main(int argc, char const *argv[])
+int	main(int argc, char const *argv[])
 {
-	if(argc < 2)
-		print_error();
+	t_stack_node	*stack_a;
+	t_stack_node	*stack_b;
+
+	stack_b = NULL;
+	if (argc < 2)
+		return (print_error("no arguments provided"));
+	else if (strlen(argv[1]) == 0)
+		return (print_error("empty argument provided"));
 	else
-	{
-		t_stack a;
-		t_stack b;
-		a = init_stack(argv);
-		b.top = NULL;
-		b.bottom = NULL;
-		if a.top > a.top.next;
-		swap(a);
-	if a.top > a.bottom;
-		rotate(a, 1);
-	}
-	return 0;
+		stack_a = handle_args(argc, argv);
+	printf("stack A:\n");
+	print_stack(stack_a);
+	swap(&stack_a);
+	printf("swapped A\n");
+	printf("stack A:\n");
+	print_stack(stack_a);
+	return (0);
 }
