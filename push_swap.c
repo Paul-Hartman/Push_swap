@@ -6,7 +6,7 @@
 /*   By: phartman <phartman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:18:44 by phartman          #+#    #+#             */
-/*   Updated: 2024/06/20 19:27:30 by phartman         ###   ########.fr       */
+/*   Updated: 2024/06/20 19:36:32 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,28 @@ t_stack_node	*handle_args(int argc, char const *argv[])
 				print_error("invalid argument");
 			if (num > INT_MAX || num < INT_MIN)
 				print_error("argument to large or too small");
+			if (check_stack(stack, num))
+				print_error("duplicate argument");
 			stack_add(&stack, num);
 			j++;
 		}
 		i++;
 	}
 	return (stack);
+}
+
+int check_stack(t_stack_node *stack, int num)
+{
+	t_stack_node	*tmp;
+
+	tmp = stack;
+	while (tmp)
+	{
+		if (tmp->nbr == num)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (1);
 }
 
 void	print_stack(t_stack_node *stack)

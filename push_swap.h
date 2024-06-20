@@ -6,7 +6,7 @@
 /*   By: phartman <phartman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:27:19 by phartman          #+#    #+#             */
-/*   Updated: 2024/06/20 19:26:29 by phartman         ###   ########.fr       */
+/*   Updated: 2024/06/20 19:36:24 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_stack_node
 
 int						print_error(char *msg);
 t_stack_node			*handle_args(int argc, char const *argv[]);
+int check_stack(t_stack_node *stack, int num);
 
 // stack_utils.c
 t_stack_node			*stack_max(t_stack_node *stk);
