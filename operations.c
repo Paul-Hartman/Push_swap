@@ -85,5 +85,6 @@ int	swap(t_stack_node **stack)
 	(*stack)->next = tmp;
 	tmp->prev = (*stack);
 	(*stack)->prev = NULL;
+	stack_last(*stack)->prev = (*stack)->next;
 	return (1);
 }

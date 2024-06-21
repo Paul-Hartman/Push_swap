@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phartman <phartman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phartman <phartman@strudent.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 14:18:44 by phartman          #+#    #+#             */
-/*   Updated: 2024/06/20 19:36:32 by phartman         ###   ########.fr       */
+/*   Created: 2024/06/21 17:57:25 by phartman          #+#    #+#             */
+/*   Updated: 2024/06/21 17:57:25 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 
 int	print_error(char *msg)
 {
@@ -22,11 +23,11 @@ int	print_error(char *msg)
 
 t_stack_node	*handle_args(int argc, char const *argv[])
 {
-	int				i;
-	int				j;
-	t_stack_node	*stack;
-	char			**args;
-	long int		num;
+	int i;
+	int j;
+	t_stack_node *stack;
+	char **args;
+	long int num;
 
 	stack = NULL;
 	i = 1;
@@ -51,9 +52,9 @@ t_stack_node	*handle_args(int argc, char const *argv[])
 	return (stack);
 }
 
-int check_stack(t_stack_node *stack, int num)
+int	check_stack(t_stack_node *stack, int num)
 {
-	t_stack_node	*tmp;
+	t_stack_node *tmp;
 
 	tmp = stack;
 	while (tmp)
@@ -62,12 +63,26 @@ int check_stack(t_stack_node *stack, int num)
 			return (1);
 		tmp = tmp->next;
 	}
-	return (1);
+	return (0);
+}
+
+bool	stack_sorted(t_stack_node *stack)
+{
+	t_stack_node *tmp;
+
+	tmp = stack;
+	while (tmp->next)
+	{
+		if (tmp->nbr > tmp->next->nbr)
+			return (false);
+		tmp = tmp->next;
+	}
+	return (true);
 }
 
 void	print_stack(t_stack_node *stack)
 {
-	t_stack_node	*tmp;
+	t_stack_node *tmp;
 
 	tmp = stack;
 	while (tmp)
@@ -77,12 +92,12 @@ void	print_stack(t_stack_node *stack)
 	}
 }
 
-int	main(int argc, char const *argv[])
+int	main(int argc, const char *argv[])
 {
-	t_stack_node	*stack_a;
-	t_stack_node	*stack_b;
+	t_stack_node *stack_a;
+	//t_stack_node *stack_b;
 
-	stack_b = NULL;
+	//stack_b = NULL;
 	if (argc < 2)
 		return (print_error("no arguments provided"));
 	else if (strlen(argv[1]) == 0)
@@ -91,7 +106,12 @@ int	main(int argc, char const *argv[])
 		stack_a = handle_args(argc, argv);
 	printf("stack A:\n");
 	print_stack(stack_a);
-	swap(&stack_a);
+	sa(&stack_a);
+	rra(&stack_a);
+	// if(!stack_sorted(stack_a))
+	// {
+	// 	sort_three(&stack_a);
+	// }
 	printf("swapped A\n");
 	printf("stack A:\n");
 	print_stack(stack_a);

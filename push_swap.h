@@ -52,5 +52,17 @@ int						swap(t_stack_node **stack);
 int						swap_both(t_stack_node **a, t_stack_node **b);
 int						rotate_both(t_stack_node **a, t_stack_node **b,
 							int reverse);
+int						sa(t_stack_node **a);
+int						sb(t_stack_node **b);
+int						ra(t_stack_node **a);
+int						rb(t_stack_node **b);
+int rra(t_stack_node **a);
+int rrb(t_stack_node **b);
+int pa(t_stack_node **a, t_stack_node **b);
+int pb(t_stack_node **a, t_stack_node **b);
+
+// sort.c
+int						sort_three(t_stack_node **a);
+
 
 #endif
