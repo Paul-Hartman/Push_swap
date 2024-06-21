@@ -22,7 +22,7 @@ t_stack_node	*stack_max(t_stack_node *stk)
 	if (!stk)
 		return (NULL);
 	tmp = stk;
-	while (tmp->next)
+	while (tmp)
 	{
 		if (tmp->nbr > max)
 		{
@@ -44,7 +44,7 @@ t_stack_node	*stack_min(t_stack_node *stk)
 	if (!stk)
 		return (NULL);
 	tmp = stk;
-	while (tmp->next)
+	while (tmp)
 	{
 		if (tmp->nbr < min)
 		{

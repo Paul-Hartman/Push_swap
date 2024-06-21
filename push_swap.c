@@ -42,7 +42,7 @@ t_stack_node	*handle_args(int argc, char const *argv[])
 				print_error("invalid argument");
 			if (num > INT_MAX || num < INT_MIN)
 				print_error("argument to large or too small");
-			if (check_stack(stack, num))
+			if (!check_stack(stack, num))
 				print_error("duplicate argument");
 			stack_add(&stack, num);
 			j++;
@@ -60,10 +60,10 @@ int	check_stack(t_stack_node *stack, int num)
 	while (tmp)
 	{
 		if (tmp->nbr == num)
-			return (1);
+			return (0);
 		tmp = tmp->next;
 	}
-	return (0);
+	return (1);
 }
 
 bool	stack_sorted(t_stack_node *stack)
@@ -95,9 +95,9 @@ void	print_stack(t_stack_node *stack)
 int	main(int argc, const char *argv[])
 {
 	t_stack_node *stack_a;
-	//t_stack_node *stack_b;
+	t_stack_node *stack_b;
 
-	//stack_b = NULL;
+	stack_b = NULL;
 	if (argc < 2)
 		return (print_error("no arguments provided"));
 	else if (strlen(argv[1]) == 0)
@@ -106,14 +106,20 @@ int	main(int argc, const char *argv[])
 		stack_a = handle_args(argc, argv);
 	printf("stack A:\n");
 	print_stack(stack_a);
-	sa(&stack_a);
-	rra(&stack_a);
-	// if(!stack_sorted(stack_a))
-	// {
-	// 	sort_three(&stack_a);
-	// }
-	printf("swapped A\n");
+	first_push(&stack_a, &stack_b, stack_len(stack_a));
+	while(!stack_sorted(stack_a))
+	{
+		if(stack_len(stack_a) == 3)
+			sort_three(&stack_a);
+		//assign_target_b(&stack_a, &stack_b);
+		//assign_indexes(stack_a);
+		//assign_indexes(stack_b);
+
+			
+	}
 	printf("stack A:\n");
 	print_stack(stack_a);
+	printf("stack B:\n");
+	print_stack(stack_b);
 	return (0);
 }
