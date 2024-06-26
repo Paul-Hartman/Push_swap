@@ -49,6 +49,7 @@ t_stack_node	*handle_args(int argc, char const *argv[])
 		}
 		i++;
 	}
+	free(args);
 	return (stack);
 }
 
@@ -104,24 +105,36 @@ int	main(int argc, const char *argv[])
 		return (print_error("empty argument provided"));
 	else
 		stack_a = handle_args(argc, argv);
-	printf("stack A:\n");
-	print_stack(stack_a);
 	first_push(&stack_a, &stack_b, stack_len(stack_a));
 	while(!stack_sorted(stack_a))
 	{
 		if(stack_len(stack_a) == 3)
+		{
 			sort_three(&stack_a);
-		//assign_target_b(&stack_a, &stack_b);
-		//assign_indexes(stack_a);
-		//assign_indexes(stack_b);
-		//assign_target_b(&stack_a, &stack_b);
-		//find_push_cost(&stack_a, &stack_b);
-
+			break ;
+		}
+		assign_target_b(&stack_a, &stack_b);
+		assign_indexes(stack_a);
+		assign_indexes(stack_b);
+		is_above_median(&stack_a);
+		is_above_median(&stack_b);
+		assign_target_b(&stack_a, &stack_b);
+		find_push_cost(&stack_a, &stack_b);
+		push_cheapest(&stack_a, &stack_b);
 			
 	}
-	printf("stack A:\n");
+	while (stack_b)
+	{
+		
+		assign_indexes(stack_a);
+		assign_indexes(stack_b);
+		is_above_median(&stack_a);
+		is_above_median(&stack_b);
+		assign_target_a(&stack_a, &stack_b);
+		find_push_cost(&stack_b, &stack_a);
+		push_cheapest(&stack_b, &stack_a);
+	}
+	min_to_top(&stack_a);
 	print_stack(stack_a);
-	printf("stack B:\n");
-	print_stack(stack_b);
 	return (0);
 }
