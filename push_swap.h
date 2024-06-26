@@ -66,6 +66,7 @@ int						sort_three(t_stack_node **a);
 int first_push(t_stack_node **a, t_stack_node **b, int len);
 void assign_target_b(t_stack_node **a, t_stack_node **b);
 void assign_indexes(t_stack_node *stack);
+int find_push_cost(t_stack_node **a, t_stack_node **b);
 
 
 #endif

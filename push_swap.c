@@ -114,6 +114,8 @@ int	main(int argc, const char *argv[])
 		//assign_target_b(&stack_a, &stack_b);
 		//assign_indexes(stack_a);
 		//assign_indexes(stack_b);
+		//assign_target_b(&stack_a, &stack_b);
+		//find_push_cost(&stack_a, &stack_b);
 
 			
 	}

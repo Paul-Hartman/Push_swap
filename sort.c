@@ -6,72 +6,32 @@
 /*   By: phartman <phartman@strudent.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:57:07 by phartman          #+#    #+#             */
-/*   Updated: 2024/06/22 01:41:51 by phartman         ###   ########.fr       */
+/*   Updated: 2024/06/25 19:12:30 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// int sort_three(t_stack_node **a)
-// {
-// 	int first;
-// 	int second;
-// 	int third;
-// 	int a_valid;
-
-// 	first = (*a)->nbr;
-// 	second = (*a)->next->nbr;
-// 	third = (*a)->next->next->nbr;
-
-// 	if (first > second && second < third && first < third)
-// 		a_valid = sa(a);
-// 	else if (first > second && second > third && first > third)
-// 	{
-// 		a_valid = sa(a);
-// 		a_valid = rra(a);
-// 	}
-// 	else if (first > second && second < third && first > third)
-// 		a_valid = ra(a);
-// 	else if (first < second && second > third && first < third)
-// 	{
-// 		a_valid = sa(a);
-// 		a_valid = ra(a);
-// 	}
-// 	else if (first < second && second > third && first > third)
-// 		a_valid = rra(a);
-
-// 	return (a_valid);
-// }
 
 int sort_three(t_stack_node **a)
 {
-	int first;
-	int second;
-	int max_value;
+	t_stack_node *max;
 	int a_valid;
 
-	max_value = stack_max(*a)->nbr;
-	first = (*a)->nbr;
-	second = (*a)->next->nbr;
+	max = stack_max(*a);
 	a_valid = 0;
 
-	if (first == max_value)
-	{
+	if (*a == max)
 		a_valid = ra(a);
-		if (first > second)
-			a_valid = sa(a);
-	}
-	else if (second == max_value)
-	{
+	else if ((*a)->next == max)
 		a_valid = rra(a);
+	if ((*a)->nbr > (*a)->next->nbr)
 		a_valid = sa(a);
-	}
-	else if (first > second)
-	{
-		a_valid = sa(a);
-	}
 	return (a_valid);
 }
+
+
+
 
 int first_push(t_stack_node **a, t_stack_node **b, int len)
 {
@@ -145,23 +105,34 @@ int find_median(t_stack_node *stack)
 }
 
 
-int find_push_cost(t_stack_node **a, t_stack_node **b)
-{
-	int cost_a;
+// int find_push_cost(t_stack_node **a, t_stack_node **b)
+// {
+// 	int cost_a;
 
-	int cost_b;
+// 	int cost_b;
 
-	t_stack_node *tmp_a;
-	if(tmp_a->index < find_median(*a))
-		cost_a = tmp_a->index;
-	else
-		cost_a = stack_len(*a) - tmp_a->index;
+// 	t_stack_node *tmp_a;
 
-	if(tmp_a->target->index < find_median(*b))
-		cost_b = tmp_a->target->index;
-	else
-		cost_b = stack_len(*b) - tmp_a->target->index;
+// 	tmp_a = *a;
+// 	while(tmp_a)
+// 	{
+// 		if(tmp_a->index < find_median(*a))
+// 			cost_a = tmp_a->index;
+// 			tmp_a->above_median = true;
+// 		else
+// 			cost_a = stack_len(*a) - tmp_a->index;
 
-	return (cost_a + cost_b);
-}
+// 		if(tmp_a->target->index < find_median(*b))
+// 			cost_b = tmp_a->target->index;
+			
+// 		else
+// 			cost_b = stack_len(*b) - tmp_a->target->index;
+
+// 		tmp_a->push_cost = cost_a + cost_b;
+// 		tmp_a = tmp_a->next;
+// 	}
+// 	return (1);
+// }
+
+// int push_cheapest()
 
