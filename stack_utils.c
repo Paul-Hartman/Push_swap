@@ -108,3 +108,19 @@ void	stack_add(t_stack_node **stk, int n)
 		new->prev = last_node;
 	}
 }
+
+void free_stack(t_stack_node **stk)
+{
+    t_stack_node *current_node = *stk;
+    t_stack_node *next_node;
+
+    while (current_node != NULL)
+    {
+        next_node = current_node->next;
+        free(current_node);
+        current_node = next_node;
+    }
+
+    *stk = NULL; 
+	free(*stk);
+}

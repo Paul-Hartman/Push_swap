@@ -45,11 +45,14 @@ t_stack_node	*handle_args(int argc, char const *argv[])
 			if (!check_stack(stack, num))
 				print_error("duplicate argument");
 			stack_add(&stack, num);
+			free(args[j]);
 			j++;
 		}
+		free(args);
 		i++;
+		
 	}
-	free(args);
+	
 	return (stack);
 }
 
@@ -136,5 +139,6 @@ int	main(int argc, const char *argv[])
 	}
 	min_to_top(&stack_a);
 	print_stack(stack_a);
+	free_stack(&stack_a);
 	return (0);
 }

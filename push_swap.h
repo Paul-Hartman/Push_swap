@@ -44,6 +44,7 @@ t_stack_node	*stack_min(t_stack_node *stk);
 t_stack_node	*stack_last(t_stack_node *stk);
 int	stack_len(t_stack_node *stk);
 void	stack_add(t_stack_node **stk, int n);
+void free_stack(t_stack_node **stk);
 
 // operations.c
 int	push_a(t_stack_node **a, t_stack_node **b);
