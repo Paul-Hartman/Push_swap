@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phartman <phartman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phartman <phartman@strudent.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:57:07 by phartman          #+#    #+#             */
-/*   Updated: 2024/06/26 17:01:29 by phartman         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:03:36 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,38 +56,42 @@ void	assign_indexes(t_stack_node *stack)
 	}
 }
 
-void	assign_target_b(t_stack_node **a, t_stack_node **b)
-{
-	t_stack_node	*tmp_a;
-	t_stack_node	*tmp_b;
-	t_stack_node	*max;
-	t_stack_node	*min;
-	t_stack_node	*closest;
+// void	assign_target_b(t_stack_node **a, t_stack_node **b)
+// {
+// 	t_stack_node	*tmp_a;
+// 	t_stack_node	*tmp_b;
+// 	t_stack_node	*max;
+// 	t_stack_node	*min;
+// 	t_stack_node	*closest;
 
-	max = stack_max(*b);
-	min = stack_min(*b);
-	tmp_a = *a;
-	closest = max;
-	tmp_b = *b;
-	while (tmp_a)
-	{
-		tmp_b = *b;
-		if (tmp_a->nbr < min->nbr)
-		{
-			tmp_a->target = max;
-			tmp_a = tmp_a->next;
-			continue ;
-		}
-		while (tmp_b)
-		{
-			if ((tmp_b->nbr < tmp_a->nbr) && (tmp_b->nbr > closest->nbr))
-				closest = tmp_b;
-			tmp_b = tmp_b->next;
-		}
-		tmp_a->target = closest;
-		tmp_a = tmp_a->next;
-	}
-}
+// 	max = stack_max(*b);
+// 	min = stack_min(*b);
+// 	tmp_a = *a;
+	
+// 	tmp_b = *b;
+// 	while (tmp_a)
+// 	{
+// 		closest = min;
+// 		tmp_b = *b;
+// 		if (tmp_a->nbr < min->nbr)
+// 		{
+// 			tmp_a->target = max;
+// 		}
+// 		else
+// 		{
+// 			while (tmp_b)
+// 			{
+// 				if ((tmp_b->nbr < tmp_a->nbr) && (tmp_b->nbr > closest->nbr))
+// 					closest = tmp_b;
+// 				tmp_b = tmp_b->next;
+// 			}
+// 			tmp_a->target = closest;
+
+// 		}
+		
+// 		tmp_a = tmp_a->next;
+// 	}
+// }
 
 void	assign_target_a(t_stack_node **a, t_stack_node **b)
 {
@@ -104,20 +108,23 @@ void	assign_target_a(t_stack_node **a, t_stack_node **b)
 	tmp_b = *b;
 	while (tmp_b)
 	{
+		closest = max;
 		tmp_a = *a;
 		if (tmp_b->nbr > max->nbr)
 		{
 			tmp_b->target = min;
-			tmp_b = tmp_b->next;
-			continue ;
 		}
-		while (tmp_a)
+		else
 		{
-			if ((tmp_a->nbr > tmp_b->nbr) && (tmp_a->nbr < closest->nbr))
-				closest = tmp_a;
-			tmp_a = tmp_a->next;
+			while (tmp_a)
+			{
+				if ((tmp_a->nbr > tmp_b->nbr) && (tmp_a->nbr < closest->nbr))
+					closest = tmp_a;
+				tmp_a = tmp_a->next;
+			}
+			tmp_b->target = closest;
 		}
-		tmp_b->target = closest;
+		
 		tmp_b = tmp_b->next;
 	}
 }
