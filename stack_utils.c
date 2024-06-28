@@ -14,44 +14,40 @@
 
 t_stack_node	*stack_max(t_stack_node *stk)
 {
-	t_stack_node	*tmp;
 	t_stack_node	*max_node;
 	int				max;
 
 	max = INT_MIN;
 	if (!stk)
 		return (NULL);
-	tmp = stk;
-	while (tmp)
+	while (stk)
 	{
-		if (tmp->nbr > max)
+		if (stk->nbr > max)
 		{
-			max = tmp->nbr;
-			max_node = tmp;
+			max = stk->nbr;
+			max_node = stk;
 		}
-		tmp = tmp->next;
+		stk = stk->next;
 	}
 	return (max_node);
 }
 
 t_stack_node	*stack_min(t_stack_node *stk)
 {
-	t_stack_node	*tmp;
 	t_stack_node	*min_node;
 	int				min;
 
 	min = INT_MAX;
 	if (!stk)
 		return (NULL);
-	tmp = stk;
-	while (tmp)
+	while (stk)
 	{
-		if (tmp->nbr < min)
+		if (stk->nbr < min)
 		{
-			min = tmp->nbr;
-			min_node = tmp;
+			min = stk->nbr;
+			min_node = stk;
 		}
-		tmp = tmp->next;
+		stk = stk->next;
 	}
 	return (min_node);
 }

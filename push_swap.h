@@ -29,6 +29,7 @@ typedef struct s_stack_node
 	int index;
 	int push_cost;
 	bool above_median;
+	bool cheapest;
 	struct s_stack_node *next;
 	struct s_stack_node *prev;
 	struct s_stack_node *target;
@@ -68,12 +69,20 @@ int	pb(t_stack_node **a, t_stack_node **b);
 // sort.c
 int	sort_three(t_stack_node **a);
 void	first_push(t_stack_node **a, t_stack_node **b, int len);
-void	assign_target_b(t_stack_node **a, t_stack_node **b);
-void	assign_target_a(t_stack_node **a, t_stack_node **b);
+void	assign_target_b(t_stack_node *a, t_stack_node *b);
+void	assign_target_a(t_stack_node *a, t_stack_node *b);
 void	assign_indexes(t_stack_node *stack);
-int	find_push_cost(t_stack_node **a, t_stack_node **b);
+//int	find_push_cost(t_stack_node **a, t_stack_node **b);
 void	is_above_median(t_stack_node **stack);
-void	push_cheapest(t_stack_node **a, t_stack_node **b);
+void	push_cheapest_a(t_stack_node **a, t_stack_node **b);
+void	push_cheapest_b(t_stack_node **a, t_stack_node **b);
 void min_to_top(t_stack_node **a);
+void set_cheapest(t_stack_node *stack);
+t_stack_node	*get_cheapest(t_stack_node *a);
+void find_push_cost_b(t_stack_node *a, t_stack_node *b);
+void find_push_cost_a(t_stack_node *a, t_stack_node *b);
 
+void	push_cheapest(t_stack_node **a, t_stack_node **b, char stack);
 #endif
+
+

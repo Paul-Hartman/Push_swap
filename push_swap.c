@@ -116,28 +116,41 @@ int	main(int argc, const char *argv[])
 			sort_three(&stack_a);
 			break ;
 		}
-		assign_target_b(&stack_a, &stack_b);
 		assign_indexes(stack_a);
-		assign_indexes(stack_b);
+		assign_indexes(stack_b); 
 		is_above_median(&stack_a);
 		is_above_median(&stack_b);
-		assign_target_b(&stack_a, &stack_b);
-		find_push_cost(&stack_a, &stack_b);
-		push_cheapest(&stack_a, &stack_b);
+		assign_target_a(stack_a, stack_b);
+		find_push_cost_a(stack_a, stack_b);
+		set_cheapest(stack_a);
+		//push_cheapest(&stack_a, &stack_b, 'a');
+		push_cheapest_a(&stack_a, &stack_b);
 			
 	}
+	if(stack_len(stack_a) == 3)
+		{
+			sort_three(&stack_a);
+		}
 	while (stack_b)
 	{
-		
 		assign_indexes(stack_a);
 		assign_indexes(stack_b);
 		is_above_median(&stack_a);
 		is_above_median(&stack_b);
-		assign_target_a(&stack_a, &stack_b);
-		find_push_cost(&stack_b, &stack_a);
-		push_cheapest(&stack_b, &stack_a);
+		assign_target_b(stack_a, stack_b);
+		find_push_cost_b(stack_a, stack_b);
+		set_cheapest(stack_b);
+		push_cheapest_b(&stack_a, &stack_b);	
+		//push_cheapest(&stack_b, &stack_a, 'b');
 	}
 	min_to_top(&stack_a);
+	print_stack(stack_a);
+	ft_printf("b");
+	print_stack(stack_b);
+	if(stack_sorted(stack_a))
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
 	free_stack(&stack_a);
 	return (0);
 }
