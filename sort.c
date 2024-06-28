@@ -6,7 +6,7 @@
 /*   By: phartman <phartman@strudent.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:57:07 by phartman          #+#    #+#             */
-/*   Updated: 2024/06/29 01:30:27 by phartman         ###   ########.fr       */
+/*   Updated: 2024/06/29 01:40:57 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -345,8 +345,8 @@ t_stack_node	*get_cheapest(t_stack_node *a)
 // 	}
 // 	else if (!cheapest->above_median && !cheapest->target->above_median)
 // 	{
-// 		while(*b != cheapest->target
-// 		&& *a != cheapest)
+		// while(*b != cheapest->target
+		// && *a != cheapest)
 // 			rrr(a, b);
 // 	}
 // 	while(cheapest != *a || cheapest->target != *b)
@@ -373,11 +373,11 @@ void push_cheapest_a(t_stack_node **a, t_stack_node **b) {
 
     cheapest = get_cheapest(*a);
     if (cheapest->above_median && cheapest->target->above_median) {
-        while (i++ < find_min(cheapest->index, cheapest->target->index))
-            rr(a, b);
+        		while(*b != cheapest->target && *a != cheapest)
+            		rr(a, b);
     } else if (!cheapest->above_median && !cheapest->target->above_median) {
-        while (i++ < find_min(cheapest->index, cheapest->target->index))
-            rrr(a, b);
+        		while(*b != cheapest->target && *a != cheapest)
+            		rrr(a, b);
     }
     while (cheapest != *a || cheapest->target != *b) {
         if (cheapest->target->above_median && cheapest->target != *b)
@@ -401,12 +401,12 @@ void push_cheapest_b(t_stack_node **a, t_stack_node **b) {
 
     cheapest = get_cheapest(*b); // Notice we get the cheapest from *b now
     if (cheapest->above_median && cheapest->target->above_median) {
-        while (i++ < find_min(cheapest->index, cheapest->target->index))
-            rr(a, b);
+        		while(*a != cheapest->target && *b != cheapest)
+            		rr(a, b);
     } else if (!cheapest->above_median && !cheapest->target->above_median) {
-        while (i++ < find_min(cheapest->index, cheapest->target->index))
-            rrr(a, b);
-    }
+        		while(*a != cheapest->target && *b != cheapest)
+            		rrr(a, b);
+	}
     while (cheapest != *b || cheapest->target != *a) { // Adjusted for *b and *a
         if (cheapest->target->above_median && cheapest->target != *a)
             ra(a); // Adjusted for *a

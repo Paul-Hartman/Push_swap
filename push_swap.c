@@ -144,13 +144,6 @@ int	main(int argc, const char *argv[])
 		//push_cheapest(&stack_b, &stack_a, 'b');
 	}
 	min_to_top(&stack_a);
-	print_stack(stack_a);
-	ft_printf("b");
-	print_stack(stack_b);
-	if(stack_sorted(stack_a))
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
 	free_stack(&stack_a);
 	return (0);
 }
