@@ -6,7 +6,7 @@
 /*   By: phartman <phartman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:45:50 by phartman          #+#    #+#             */
-/*   Updated: 2024/07/02 15:58:27 by phartman         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:56:55 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ t_stack_node	*handle_args(int argc, char const *argv[])
 		while (args[j])
 		{
 			num = ft_atol(args[j]);
-			if ((num == 0 && args[j][0] != '0') || !check_dups(stack, num) || num > INT_MAX || num < INT_MIN ||
-				!all_digits(args[j]) || ft_strlen(args[j]) > 11)
+			if ((num == 0 && args[j][0] != '0') || !check_dups(stack, num)
+					|| num > INT_MAX || num < INT_MIN || !all_digits(args[j])
+					|| ft_strlen(args[j]) > 11)
 				print_error(stack);
 			stack_add(&stack, num);
 			free(args[j++]);

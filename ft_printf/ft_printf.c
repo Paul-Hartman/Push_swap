@@ -78,4 +78,3 @@ void	ft_putnbruns_fd(unsigned int n, int fd)
 	else
 		ft_putchar_fd(n + '0', fd);
 }
-
