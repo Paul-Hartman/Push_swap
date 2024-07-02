@@ -6,7 +6,7 @@
 /*   By: phartman <phartman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:57:07 by phartman          #+#    #+#             */
-/*   Updated: 2024/07/02 18:49:44 by phartman         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:22:45 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	first_push(t_stack_node **a, t_stack_node **b, int len)
 
 void	min_to_top(t_stack_node **a)
 {
-	while ((*a)->nbr != stack_min(*a)->nbr)
+	while (*a != stack_min(*a))
 	{
 		if (stack_min(*a)->above_median)
 			ra(a);
