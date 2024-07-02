@@ -14,44 +14,40 @@
 
 t_stack_node	*stack_max(t_stack_node *stk)
 {
-	t_stack_node	*tmp;
 	t_stack_node	*max_node;
 	int				max;
 
 	max = INT_MIN;
 	if (!stk)
 		return (NULL);
-	tmp = stk;
-	while (tmp->next)
+	while (stk)
 	{
-		if (tmp->nbr > max)
+		if (stk->nbr > max)
 		{
-			max = tmp->nbr;
-			max_node = tmp;
+			max = stk->nbr;
+			max_node = stk;
 		}
-		tmp = tmp->next;
+		stk = stk->next;
 	}
 	return (max_node);
 }
 
 t_stack_node	*stack_min(t_stack_node *stk)
 {
-	t_stack_node	*tmp;
 	t_stack_node	*min_node;
 	int				min;
 
 	min = INT_MAX;
 	if (!stk)
 		return (NULL);
-	tmp = stk;
-	while (tmp->next)
+	while (stk)
 	{
-		if (tmp->nbr < min)
+		if (stk->nbr < min)
 		{
-			min = tmp->nbr;
-			min_node = tmp;
+			min = stk->nbr;
+			min_node = stk;
 		}
-		tmp = tmp->next;
+		stk = stk->next;
 	}
 	return (min_node);
 }
@@ -92,10 +88,11 @@ void	stack_add(t_stack_node **stk, int n)
 		return ;
 	new = malloc(sizeof(t_stack_node));
 	if (!new)
-		print_error("malloc failed");
+		print_error(*stk);
 	new->nbr = n;
 	new->next = NULL;
 	new->prev = NULL;
+	new->cheapest = false;
 	if (!*stk)
 	{
 		new->prev = NULL;
@@ -107,4 +104,20 @@ void	stack_add(t_stack_node **stk, int n)
 		last_node->next = new;
 		new->prev = last_node;
 	}
+}
+
+void free_stack(t_stack_node **stk)
+{
+    t_stack_node *current_node = *stk;
+    t_stack_node *next_node;
+
+    while (current_node != NULL)
+    {
+        next_node = current_node->next;
+        free(current_node);
+        current_node = next_node;
+    }
+
+    *stk = NULL; 
+	free(*stk);
 }

@@ -13,7 +13,7 @@
 #include "push_swap.h"
 
 
-int	swap_both(t_stack_node **a, t_stack_node **b)
+int	ss(t_stack_node **a, t_stack_node **b)
 {
 	int a_valid;
 	int b_valid;
@@ -24,16 +24,24 @@ int	swap_both(t_stack_node **a, t_stack_node **b)
 	return (a_valid && b_valid);
 }
 
-int	rotate_both(t_stack_node **a, t_stack_node **b, int reverse)
+int	rrr(t_stack_node **a, t_stack_node **b)
 {
 	int a_valid;
 	int b_valid;
 
-	a_valid = rotate(a, reverse);
-	b_valid = rotate(b, reverse);
-	if (reverse)
+	a_valid = rotate(a, true);
+	b_valid = rotate(b, true);
 		ft_printf("rrr\n");
-	else
+	return (a_valid && b_valid);
+}
+
+int	rr(t_stack_node **a, t_stack_node **b)
+{
+	int a_valid;
+	int b_valid;
+
+	a_valid = rotate(a, false);
+	b_valid = rotate(b, false);
 		ft_printf("rr\n");
 	return (a_valid && b_valid);
 }
