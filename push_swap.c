@@ -12,39 +12,6 @@
 
 #include "push_swap.h"
 
-void	sort_two(t_stack_node **a, int len)
-{
-	if (len == 2)
-	{
-		if ((*a)->nbr > (*a)->next->nbr)
-			sa(a);
-	}
-}
-
-void	process_a(t_stack_node **stack_a, t_stack_node **stack_b)
-{
-	assign_indexes(*stack_a);
-	assign_indexes(*stack_b);
-	is_above_median(*stack_a);
-	is_above_median(*stack_b);
-	assign_target_a(*stack_a, *stack_b);
-	find_push_cost_a(*stack_a, *stack_b);
-	set_cheapest(*stack_a);
-	push_cheapest_a(stack_a, stack_b);
-}
-
-void	process_b(t_stack_node **stack_a, t_stack_node **stack_b)
-{
-	assign_indexes(*stack_a);
-	assign_indexes(*stack_b);
-	is_above_median(*stack_a);
-	is_above_median(*stack_b);
-	assign_target_b(*stack_a, *stack_b);
-	find_push_cost_b(*stack_a, *stack_b);
-	set_cheapest(*stack_b);
-	push_cheapest_b(stack_a, stack_b);
-}
-
 int	main(int argc, const char *argv[])
 {
 	t_stack_node	*stack_a;

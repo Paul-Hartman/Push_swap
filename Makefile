@@ -5,12 +5,15 @@ CFLAGS := -Wall -Wextra -Werror -g
 
 SRCS := push_swap.c\
 		stack_utils.c\
+		stack_utils_2.c\
 		sort.c\
 		input_checks.c\
 		push.c\
 		rotate.c\
 		rev_rotate.c\
 		swap.c\
+		stack_a.c\
+		stack_b.c\
 
 LIBFT = ./ft_printf/libftprintf.a
 
