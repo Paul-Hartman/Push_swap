@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phartman <phartman@strudent.42berlin.de    +#+  +:+       +#+        */
+/*   By: phartman <phartman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:57:07 by phartman          #+#    #+#             */
-/*   Updated: 2024/06/29 01:40:57 by phartman         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:30:35 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ int	sort_three(t_stack_node **a)
 void	first_push(t_stack_node **a, t_stack_node **b, int len)
 {
 
+	if (len == 2)
+	{
+		if((*a)->nbr > (*a)->next->nbr)
+			sa(a);
+		else
+			return ;
+	}
+	
 	if (len == 4)
 		pb(a, b);
 	else if (len > 4)
@@ -118,45 +126,6 @@ void	assign_target_b(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-
-
-
-// void	assign_target_b(t_stack_node **a, t_stack_node **b)
-// {
-// 	t_stack_node	*tmp_a;
-// 	t_stack_node	*tmp_b;
-// 	t_stack_node	*max;
-// 	t_stack_node	*min;
-// 	t_stack_node	*closest;
-
-// 	max = stack_max(*a);
-// 	min = stack_min(*a);
-// 	tmp_a = *a;
-// 	closest = max;
-// 	tmp_b = *b;
-// 	while (tmp_b)
-// 	{
-// 		closest = max;
-// 		tmp_a = *a;
-// 		if (tmp_b->nbr > max->nbr)
-// 		{
-// 			tmp_b->target = min;
-// 		}
-// 		else
-// 		{
-// 			while (tmp_a)
-// 			{
-// 				if ((tmp_a->nbr > tmp_b->nbr) && (tmp_a->nbr < closest->nbr))
-// 					closest = tmp_a;
-// 				tmp_a = tmp_a->next;
-// 			}
-// 			tmp_b->target = closest;
-// 		}
-		
-// 		tmp_b = tmp_b->next;
-// 	}
-// }
-
 void	is_above_median(t_stack_node **stack)
 {
 	t_stack_node	*tmp;
@@ -172,13 +141,6 @@ void	is_above_median(t_stack_node **stack)
 			tmp->above_median = false;
 		tmp = tmp->next;
 	}
-}
-
-int	find_min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
 }
 
 void find_push_cost_a(t_stack_node *a, t_stack_node *b)
@@ -198,9 +160,18 @@ void find_push_cost_a(t_stack_node *a, t_stack_node *b)
 		else
 			a->push_cost += len_b - (a->target->index);
 		a = a->next;
-
 	}
 }
+
+
+
+int find_min(int a , int b)
+{
+	if(a < b)
+		return a;
+	return b;
+}
+
 
 void find_push_cost_b(t_stack_node *a, t_stack_node *b)
 {
@@ -391,7 +362,12 @@ void push_cheapest_a(t_stack_node **a, t_stack_node **b) {
         i++;
     }
     if (cheapest == *a && cheapest->target == *b)
+	{
         pb(a, b);
+		cheapest->cheapest = false;
+	}
+
+	
 }
 
 
@@ -419,7 +395,10 @@ void push_cheapest_b(t_stack_node **a, t_stack_node **b) {
         i++;
     }
     if (cheapest == *b && cheapest->target == *a)
+	{
         pa(a, b); // Adjusted for pushing to *a
+		cheapest->cheapest = false;
+	}
 }
 
 

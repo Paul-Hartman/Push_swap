@@ -2,14 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: phartman <phartman@student.42.fr>          +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
-/*   Created: 2024/06/19 14:27:19 by phartman          #+#    #+#             */
-/*   Updated: 2024/06/20 19:36:24 by phartman         ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phartman <phartman@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/02 13:32:13 by phartman          #+#    #+#             */
+/*   Updated: 2024/07/02 13:32:13 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +32,9 @@ typedef struct s_stack_node
 	struct s_stack_node *target;
 } t_stack_node;
 
-int	print_error(char *msg);
-t_stack_node	*handle_args(int argc, char const *argv[]);
-int	check_stack(t_stack_node *stack, int num);
+
+
+
 
 // stack_utils.c
 t_stack_node	*stack_max(t_stack_node *stk);
@@ -83,6 +80,18 @@ void find_push_cost_b(t_stack_node *a, t_stack_node *b);
 void find_push_cost_a(t_stack_node *a, t_stack_node *b);
 
 void	push_cheapest(t_stack_node **a, t_stack_node **b, char stack);
+
+
+
+int find_max(int a , int b);
+int find_min(int a , int b);
+
+//input_checks.c
+bool	stack_sorted(t_stack_node *stack);
+bool	all_digits(char *str);
+int	check_dups(t_stack_node *stack, int num);
+t_stack_node	*handle_args(int argc, char const *argv[]);
+int	print_error(t_stack_node *stack);
 #endif
 
 

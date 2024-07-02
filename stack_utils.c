@@ -88,10 +88,11 @@ void	stack_add(t_stack_node **stk, int n)
 		return ;
 	new = malloc(sizeof(t_stack_node));
 	if (!new)
-		print_error("malloc failed");
+		print_error(*stk);
 	new->nbr = n;
 	new->next = NULL;
 	new->prev = NULL;
+	new->cheapest = false;
 	if (!*stk)
 	{
 		new->prev = NULL;
