@@ -6,39 +6,29 @@
 /*   By: phartman <phartman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:57:07 by phartman          #+#    #+#             */
-/*   Updated: 2024/07/02 16:30:35 by phartman         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:56:53 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	sort_three(t_stack_node **a)
+void	sort_three(t_stack_node **a)
 {
 	t_stack_node	*max;
-	int				a_valid;
 
 	max = stack_max(*a);
-	a_valid = 0;
+
 	if (*a == max)
-		a_valid = ra(a);
+		ra(a);
 	else if ((*a)->next == max)
-		a_valid = rra(a);
+		rra(a);
 	if ((*a)->nbr > (*a)->next->nbr)
-		a_valid = sa(a);
-	return (a_valid);
+		sa(a);
 }
 
 void	first_push(t_stack_node **a, t_stack_node **b, int len)
 {
 
-	if (len == 2)
-	{
-		if((*a)->nbr > (*a)->next->nbr)
-			sa(a);
-		else
-			return ;
-	}
-	
 	if (len == 4)
 		pb(a, b);
 	else if (len > 4)
@@ -126,13 +116,13 @@ void	assign_target_b(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-void	is_above_median(t_stack_node **stack)
+void	is_above_median(t_stack_node *stack)
 {
 	t_stack_node	*tmp;
 	int				median;
 
-	median = stack_len(*stack) / 2;
-	tmp = *stack;
+	median = stack_len(stack) / 2;
+	tmp = stack;
 	while (tmp)
 	{
 		if (tmp->index <= median)

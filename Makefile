@@ -1,8 +1,16 @@
 CC := cc
 
-CFLAGS := -Wall -Wextra -Werror -g
+CFLAGS := -Wall -Wextra -Werror -g 
 
-SRCS := push_swap.c stack_utils.c operations.c operation_wrappers.c sort.c input_checks.c
+
+SRCS := push_swap.c\
+		stack_utils.c\
+		sort.c\
+		input_checks.c\
+		push.c\
+		rotate.c\
+		rev_rotate.c\
+		swap.c\
 
 LIBFT = ./ft_printf/libftprintf.a
 
@@ -11,7 +19,7 @@ OBJS := $(SRCS:.c=.o)
 NAME := push_swap
 
 $(NAME): $(OBJS) $(LIBFT) 
-	@$(CC) $(CFLAGS)  $(OBJS) $(LIBFT) -o $(NAME) 
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) 
  
 all: $(NAME) $(LIBFT) 
 
