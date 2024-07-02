@@ -1,6 +1,6 @@
 CC := cc
 
-CFLAGS := -Wall -Wextra -Werror -g 
+CFLAGS := -Wall -Wextra -Werror
 
 
 SRCS := push_swap.c\
