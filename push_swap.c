@@ -17,9 +17,9 @@ int	main(int argc, const char *argv[])
 	t_stack_node	*stack_a;
 	t_stack_node	*stack_b;
 
+	if (argc < 2)
+		return (1);
 	stack_b = NULL;
-	if (argc < 2 || strlen(argv[1]) == 0)
-		print_error(NULL);
 	stack_a = handle_args(argc, argv);
 	sort_two(&stack_a, stack_len(stack_a));
 	if (stack_sorted(stack_a))

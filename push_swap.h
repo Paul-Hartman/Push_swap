@@ -93,11 +93,13 @@ void			sort_three(t_stack_node **a);
 void			sort_two(t_stack_node **a, int len);
 void			min_to_top(t_stack_node **a);
 void			first_push(t_stack_node **a, t_stack_node **b, int len);
+bool			stack_sorted(t_stack_node *stack);
 
 // input_checks.c
-bool			stack_sorted(t_stack_node *stack);
+
 bool			all_digits(char *str);
 int				check_dups(t_stack_node *stack, int num);
 int				print_error(t_stack_node *stack);
 t_stack_node	*handle_args(int argc, char const *argv[]);
+void			is_valid(long int num, char **args, int j, t_stack_node *stack);
 #endif

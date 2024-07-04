@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phartman <phartman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phartman <phartman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:26:56 by phartman          #+#    #+#             */
-/*   Updated: 2024/07/02 17:29:18 by phartman         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:28:19 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	swap(t_stack_node **stack)
 	(*stack)->next = tmp;
 	tmp->prev = (*stack);
 	(*stack)->prev = NULL;
-	stack_last(*stack)->prev = (*stack)->next;
 	return ;
 }
 

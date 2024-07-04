@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_checks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phartman <phartman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phartman <phartman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:45:50 by phartman          #+#    #+#             */
-/*   Updated: 2024/07/02 18:56:55 by phartman         ###   ########.fr       */
+/*   Updated: 2024/07/04 18:27:54 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,12 @@ t_stack_node	*handle_args(int argc, char const *argv[])
 	{
 		j = 0;
 		args = ft_split(argv[i++], ' ');
+		if (!args || !args[0])
+			print_error(NULL);
 		while (args[j])
 		{
 			num = ft_atol(args[j]);
-			if ((num == 0 && args[j][0] != '0') || !check_dups(stack, num)
-					|| num > INT_MAX || num < INT_MIN || !all_digits(args[j])
-					|| ft_strlen(args[j]) > 11)
-				print_error(stack);
+			is_valid(num, args, j, stack);
 			stack_add(&stack, num);
 			free(args[j++]);
 		}
@@ -77,16 +76,10 @@ int	check_dups(t_stack_node *stack, int num)
 	return (1);
 }
 
-bool	stack_sorted(t_stack_node *stack)
+void	is_valid(long int num, char **args, int j, t_stack_node *stack)
 {
-	t_stack_node	*tmp;
-
-	tmp = stack;
-	while (tmp->next)
-	{
-		if (tmp->nbr > tmp->next->nbr)
-			return (false);
-		tmp = tmp->next;
-	}
-	return (true);
+	if ((num == 0 && args[j][0] != '0') || !check_dups(stack, num)
+					|| num > INT_MAX || num < INT_MIN || !all_digits(args[j])
+					|| ft_strlen(args[j]) > 11 || !args)
+		print_error(stack);
 }

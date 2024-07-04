@@ -21,21 +21,21 @@ long int	ft_atol(const char *nptr)
 	i = 0;
 	sign = 1;
 	result = 0;
+	if (nptr == NULL)
+		return (0);
 	while (*nptr == ' ' || (*nptr >= 9 && *nptr <= 13))
 		nptr++;
 	if (*nptr == '-' || *nptr == '+')
 	{
-		if (*nptr == '-')
+		if (*nptr++ == '-')
 			sign = -1;
-		nptr++;
 	}
 	while (nptr[i])
 	{
 		if ((nptr[i] >= '0' && nptr[i] <= '9'))
-			result = result * 10 + (nptr[i] - '0');
+			result = result * 10 + (nptr[i++] - '0');
 		else
 			return (result * sign);
-		i++;
 	}
 	return (result * sign);
 }

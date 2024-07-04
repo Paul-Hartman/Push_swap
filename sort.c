@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phartman <phartman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phartman <phartman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:57:07 by phartman          #+#    #+#             */
-/*   Updated: 2024/07/02 19:22:45 by phartman         ###   ########.fr       */
+/*   Updated: 2024/07/04 18:23:40 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,18 @@ void	min_to_top(t_stack_node **a)
 		else
 			rra(a);
 	}
+}
+
+bool	stack_sorted(t_stack_node *stack)
+{
+	t_stack_node	*tmp;
+
+	tmp = stack;
+	while (tmp->next)
+	{
+		if (tmp->nbr > tmp->next->nbr)
+			return (false);
+		tmp = tmp->next;
+	}
+	return (true);
 }
