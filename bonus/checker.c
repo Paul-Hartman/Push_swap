@@ -6,7 +6,7 @@
 /*   By: phartman <phartman@strudent.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:41:31 by phartman          #+#    #+#             */
-/*   Updated: 2024/07/05 18:15:35 by phartman         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:24:49 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ int main(int argc, char const *argv[])
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
+	free_stack(&stack_a);
 	return 0;
 }
