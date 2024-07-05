@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phartman <phartman@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: phartman <phartman@strudent.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 18:41:31 by phartman          #+#    #+#             */
-/*   Updated: 2024/07/04 19:28:19 by phartman         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:15:35 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int main(int argc, char const *argv[])
 	while(op)
 	{
 		op = get_next_line(0);
+		if (!op)
+			break;
 		run_op(op, &stack_a, &stack_b);
 	}
 	if(stack_sorted(stack_a) && stack_b == NULL)

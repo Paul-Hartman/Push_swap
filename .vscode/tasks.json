@@ -2,14 +2,21 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "run push_swap and checker",
             "type": "shell",
-            "command": "make re",
+            "command": "echo '${input:ARGS}' | xargs ./push_swap | xargs -I {} ./checker ${input:ARGS}",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
             "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "ARGS",
+            "type": "promptString",
+            "description": "Enter ARGS for push_swap and checker:"
         }
     ]
 }

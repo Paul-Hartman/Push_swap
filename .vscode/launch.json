@@ -2,24 +2,24 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Run push_swap",
+            "name": "Debug Checker with Args",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/push_swap",
-            "args": [" "],
+            "program": "${workspaceFolder}/checker",
+            "args": ["${input:ARGS}"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "build"
+            "preLaunchTask": "run push_swap and checker",
+            "miDebuggerPath": "/usr/bin/gdb"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "ARGS",
+            "type": "promptString",
+            "description": "Enter ARGS for push_swap and checker:"
         }
     ]
 }
