@@ -43,19 +43,21 @@ $(NAME): $(OBJS) $(LIBFT)
  
 all: $(NAME) $(LIBFT)
 
-bonus: $(BONUS_OBJS) $(LIBFT)
+bonus:checker
+
+checker: $(BONUS_OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFT) -o checker
 
 $(LIBFT):
 	@make -C ./ft_printf
  
 clean:
-	@rm -f $(OBJS)
+	@rm -f $(OBJS) $(BONUS_OBJS)
 	@make clean -C ./ft_printf
 	
 fclean: clean
 	@make fclean -C ./ft_printf
-	@rm -f $(NAME)
+	@rm -f $(NAME) checker
 
 re: fclean all
 

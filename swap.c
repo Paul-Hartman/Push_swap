@@ -6,7 +6,7 @@
 /*   By: phartman <phartman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:26:56 by phartman          #+#    #+#             */
-/*   Updated: 2024/07/04 17:28:19 by phartman         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:25:31 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	swap(t_stack_node **stack)
 	(*stack)->next = tmp;
 	tmp->prev = (*stack);
 	(*stack)->prev = NULL;
+	if (tmp->next)
+		tmp->next->prev = tmp;
 	return ;
 }
 
