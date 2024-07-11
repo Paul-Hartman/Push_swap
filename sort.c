@@ -6,7 +6,7 @@
 /*   By: phartman <phartman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 17:57:07 by phartman          #+#    #+#             */
-/*   Updated: 2024/07/04 18:23:40 by phartman         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:40:49 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ bool	stack_sorted(t_stack_node *stack)
 {
 	t_stack_node	*tmp;
 
+	if(stack == NULL)
+		return (false);
 	tmp = stack;
 	while (tmp->next)
 	{
