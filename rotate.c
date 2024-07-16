@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phartman <phartman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phartman <phartman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:20:27 by phartman          #+#    #+#             */
-/*   Updated: 2024/07/02 17:30:39 by phartman         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:19:44 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	rotate(t_stack_node **stack, bool reverse)
 	t_stack_node	*tmp;
 	t_stack_node	*last;
 
-	if (!stack)
+	 if (!stack || !*stack)
 		return ;
 	last = stack_last(*stack);
 	tmp = *stack;
