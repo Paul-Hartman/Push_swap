@@ -6,7 +6,7 @@
 /*   By: phartman <phartman@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:45:50 by phartman          #+#    #+#             */
-/*   Updated: 2024/07/04 18:27:54 by phartman         ###   ########.fr       */
+/*   Updated: 2024/07/16 14:58:53 by phartman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,11 @@ void	is_valid(long int num, char **args, int j, t_stack_node *stack)
 	if ((num == 0 && args[j][0] != '0') || !check_dups(stack, num)
 					|| num > INT_MAX || num < INT_MIN || !all_digits(args[j])
 					|| ft_strlen(args[j]) > 11 || !args)
+	{
+		while (args[j])
+			free(args[j++]);
+		free(args);
 		print_error(stack);
+	}
+		
 }
